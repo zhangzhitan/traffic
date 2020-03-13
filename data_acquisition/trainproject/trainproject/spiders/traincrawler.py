@@ -7,6 +7,7 @@ import json
 import redis  # 问题在于anaconda里面有redis,但是为了import 正确需要再安装redis-py
 import time
 import data_acquisition.trainproject.items as items
+import data_acquisition.trainproject.redis_setting as rcfg
 
 
 class TraincrawlerSpider(scrapy.Spider):
@@ -15,10 +16,10 @@ class TraincrawlerSpider(scrapy.Spider):
     def start_requests(self):
         firstStep = datetime.datetime.now() - datetime.timedelta(3)
         targetDate = str(firstStep)[0:10]
-        pool = redis.ConnectionPool(host='XXXXX', port=16379, password='XXXX', db=XX, decode_responses=True)
+        pool = redis.ConnectionPool(host=rcfg.REDIS_HOST, port=rcfg.REDIS_POST, password=rcfg.REDIS_PASSWORD, db=15, decode_responses=True)
         r = redis.StrictRedis(connection_pool=pool, decode_responses=True)
         today = random.randint(0, 40)
-        combinations = r.lrange('uid.{}'.format(str(today)), 1, -1)  # 这时候cont是一个字符串列表
+        combinations = r.lrange('uid.{}'.format(str(today)), 1, -1)
 
 
 

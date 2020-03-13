@@ -1,2 +1,3 @@
 .idea/
-/data_processing/database_setting.py/
+/data_processing/database_setting.py
+/data_acquisition/trainproject/redis_setting.py
