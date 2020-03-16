@@ -6,8 +6,8 @@ __copyright__ = 'copyright 2020 zhang zhitan'
 
 import pymssql
 import pandas as pd
-import datetime
 import data_processing.database_setting as cfg
+
 
 def get_pure_data(start_date, end_date, file_path):
 
@@ -34,3 +34,11 @@ def get_pure_data(start_date, end_date, file_path):
     pd.set_option('display.max_rows', 100)
     original_df.to_csv(file_path, index=None)
 
+
+if __name__ == '__main__':
+
+    """
+    输入日期形式"2020-01-01"
+    filepath = 'D:\\result.csv'
+    """
+    get_pure_data('2020-01-01', '2020-01-31', 'D:\\wanted.csv')
