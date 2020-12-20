@@ -25,12 +25,12 @@ def gen_time_list(start_date, end_date, format_type):
 
 if __name__ == '__main__':
 
-    dts = gen_time_list('20190701', '20201231', "%Y%m%d")
+    dts = gen_time_list('20210101', '20211231', "%Y%m%d")
     conn = pymssql.connect(host=cfg.TRAIN_HOST, port=cfg.TRAIN_PORT, user=cfg.TRAIN_USER, password=cfg.TRAIN_PASSWORD,
                            database=cfg.TRAIN_DATABASE, charset='utf8')
     cursor = conn.cursor()
-
-    SQL = '''create table transform{}(realtrainnum nvarchar(30), lastarrtime nvarchar(30), 
+    # SQL = ' DROP TABLE transform{}'
+    SQL = '''create table transform{}(realtrainnum nvarchar(30), lastarrtime nvarchar(30),
     thisdeptime nvarchar(30), thisdepcode nvarchar(10),thisarrtime nvarchar(30), nextdeptime nvarchar(30),
     thisarrcode nvarchar(30), delayflag nvarchar(30), delaydetail nvarchar(30), rownum nvarchar(20), allrow nvarchar(30))'''
     for date in dts:
